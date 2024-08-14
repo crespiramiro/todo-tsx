@@ -34,7 +34,7 @@ function App() {
             </div>
         </div>
         <input
-            className='w-full max-w-md px-4 py-2 border border-gray-300 rounded-md mb-4'
+            className='w-full max-w-md px-4 py-2 text-gray-900 border border-gray-300 rounded-md mb-4'
             type="text"
             value={newTask}
             placeholder='New Task'
