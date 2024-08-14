@@ -8,7 +8,7 @@ import { useTasks } from './hooks/UseTasks';
 
 function App() {
     const { theme, toggleTheme } = useTheme();
-    const { taskList, addTask, deleteTask } = useTasks();  // Usa el hook personalizado
+    const { taskList, addTask, deleteTask } = useTasks();
 
     const [newTask, setNewTask] = useState<string>('');
 
@@ -19,35 +19,35 @@ function App() {
     };
 
     return (
-        <main className={`min-h-screen ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'} flex flex-col py-32 `}>
-            <button
-                onClick={toggleTheme}
-                className="py-2 w-fit absolute top-14 right-14 px-4 rounded bg-blue-500 text-white hover:bg-blue-600"
-            >
-                Toggle Theme
-            </button>
-            <div className='title flex flex-row gap-x-4 justify-center items-center pb-10'>
-                <h1 className='text-5xl font-bold'>Todo App</h1>
-                <div className="icons flex flex-row gap-x-2">
-                    <TsIcon width='50' height='50' />
-                    <ReactIcon width='50' height='50'/>
-                </div>
+        <main className={`min-h-screen ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'} flex flex-col items-center justify-center p-4`}>
+        <button
+            onClick={toggleTheme}
+            className="py-2 px-4 rounded bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-300 absolute top-4 right-4 sm:top-6 sm:right-6"
+        >
+            Toggle Theme
+        </button>
+        <div className='title text-center pb-6'>
+            <h1 className='text-3xl sm:text-4xl lg:text-5xl font-bold'>Todo App</h1>
+            <div className="icons flex justify-center gap-2 mt-2">
+                <TsIcon width='40' height='40' />
+                <ReactIcon width='40' height='40'/>
             </div>
-            <input
-                className='flex w-full text-gray-900 rounded-md px-2 max-w-md py-2 self-center'
-                type="text"
-                value={newTask}
-                placeholder='New Task'
-                onChange={(e) => setNewTask(e.target.value)}
-            />
-            <button
-                className='py-2 bg-blue-500 flex w-fit text-white rounded-lg self-center my-4 font-medium px-5'
-                onClick={handleAddTask}
-            >
-                Add Task
-            </button>
-            <TaskList tasklist={taskList} deleteTask={deleteTask} />
-        </main>
+        </div>
+        <input
+            className='w-full max-w-md px-4 py-2 border border-gray-300 rounded-md mb-4'
+            type="text"
+            value={newTask}
+            placeholder='New Task'
+            onChange={(e) => setNewTask(e.target.value)}
+        />
+        <button
+            className='py-2 px-4 bg-blue-500 text-white rounded-lg font-medium mb-4 hover:bg-blue-600 transition-colors duration-300'
+            onClick={handleAddTask}
+        >
+            Add Task
+        </button>
+        <TaskList tasklist={taskList} deleteTask={deleteTask} />
+    </main>
     );
 }
 
