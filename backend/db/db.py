@@ -1,9 +1,8 @@
 import sqlite3
 
 def init_db():
-    conn = sqlite3.connect("mi_base.db")
+    conn = sqlite3.connect("sqlite.db")
     cursor = conn.cursor()
-    # Crear tabla de tareas si no existe
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS tasks (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -15,8 +14,7 @@ def init_db():
     conn.commit()
     conn.close()
 
-# Función para obtener la conexión a la base de datos
 def get_db_connection():
-    conn = sqlite3.connect("mi_base.db")
-    conn.row_factory = sqlite3.Row  # Para retornar los resultados como diccionarios
+    conn = sqlite3.connect("sqlite.db")
+    conn.row_factory = sqlite3.Row  
     return conn
