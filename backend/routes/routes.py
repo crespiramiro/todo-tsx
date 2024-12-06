@@ -31,3 +31,17 @@ def create_task():
     conn.commit()
     conn.close()
     return jsonify({"message": "Tarea creada"}), 201
+
+@tasks_bp.route("/<int:id>", methods=["DELETE"])
+def delete_task(id):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM tasks WHERE id = ?", (id,))
+    conn.commit()
+    
+    if cursor.rowcount == 0:  # Si no se eliminó ninguna fila
+        conn.close()
+        return jsonify({"error": "No se encontró una tarea con ese ID"}), 404
+    
+    conn.close()
+    return jsonify({"message": "Tarea eliminada"}), 200
